@@ -21,9 +21,9 @@ _DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # }
 find_resource() {
   local tpcds_spark_version=`grep "version" "${_DIR}/../build.sbt" | awk -F '\"' '{print $2}'`
-  local scala_version=`grep "scalaVersion" "${_DIR}/../build.sbt" | awk -F '.\"' '{print $2}'`
-  local jar_file="spark-tpc-ds-queries_${scala_version%?}-${tpcds_spark_version}.jar"
-  local built_jar="$_DIR/../target/scala-${scala_version%?}/${jar_file}"
+  local scala_version=`grep "scalaVersion" "${_DIR}/../build.sbt" | awk -F '\"' '{print $2}'`
+  local jar_file="spark-tpc-ds-queries_${scala_version%}-${tpcds_spark_version}.jar"
+  local built_jar="$_DIR/../target/scala-${scala_version%}/${jar_file}"
   echo $built_jar
   if [ -e "$built_jar" ]; then
     RESOURCE=$built_jar
