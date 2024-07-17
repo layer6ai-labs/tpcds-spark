@@ -64,7 +64,7 @@ object TpcdsQuery {
       nameSuffix: String = ""
       ): ListBuffer[(String, Float)] ={
     
-    val OUTPUT_DIR: String = "file://" + new File(".").getAbsolutePath() + "/../output_result/output"
+    val OUTPUT_DIR: String = "hdfs:///output_result/output"
 
     val results = new ListBuffer[(String, Float)]
     if(queries == null || queries.length == 0)
@@ -161,7 +161,7 @@ object TpcdsQuery {
     output ++= runTpcdsQueries(queryLocation = "tpcds", queries = queriesV1_4ToRun, "")
     output ++= runTpcdsQueries(queryLocation = "tpcds-v2.7.0", queries = queriesV2_7ToRun, nameSuffix = "-v2.7")
 
-    val outFile = new File("../output_result/TIMES.txt")
+    val outFile = new File("TIMES.txt")
     val bw = new BufferedWriter(new FileWriter(outFile, true))
 
     output.foreach {
